@@ -34,15 +34,6 @@ const productos = [{
     }
 ]
 
-
-// function productosDisponibles() {
-//     for (let i = 0; i < 6; i++) {
-//         let stockProductos = Object.values(productos[i]);
-//         console.log(stockProductos.toString());
-//     }
-//     return stockProductos.toString();
-// }
-
 function productosDisponibles(){
 let stockProductos = productos.map(
     (productos) => productos.nombre
