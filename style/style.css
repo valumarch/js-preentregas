@@ -32,6 +32,12 @@ ul.navbar-nav a:hover {
     color: #FEF6C9 !important;
 }
 
+ul.navbar-nav a.active{
+    color: #D4A373 !important;
+    background-color: #FEF6C9;
+    border-radius: 15px;
+}
+
 .titulo_pag {
     padding-top: 150px;
     text-align: center;
@@ -51,7 +57,7 @@ ul.navbar-nav a:hover {
     display: grid;
 }
 
-.card-productos {
+.producto {
     background-color: #FEFAE0;
     border: none;
     height: 400px;
@@ -61,13 +67,14 @@ ul.navbar-nav a:hover {
     border-radius: 10px;
     padding: 1em;
     margin-bottom: 30px;
+    object-fit: cover;
 }
 
-.card-productos h3 {
+.producto h3 {
     font-size: 15px;
 }
 
-.card-productos button {
+.producto button {
     border: none;
     padding: 7px;
     color: white;
@@ -80,22 +87,22 @@ ul.navbar-nav a:hover {
     border-radius: 5px;
 }
 
-.price {
+.precio-producto {
     font-size: 20px;
 }
 
-.card-productos button:hover {
+.producto button:hover {
     opacity: 0.7;
 }
 
-.card-productos img {
+.producto img {
     border-radius: 10px;
     max-width: 100%;
     transition: transform 0.2s;
     margin-bottom: 10px;
 }
 
-.card-productos img:hover {
+.producto img:hover {
     transform: scale(1.1);
 }
 
@@ -258,4 +265,57 @@ ul.navbar-nav a:hover {
     .footer .footer-contacto .footer-telefono {
         margin-left: 50px;
     }
+}
+
+.carrito-productos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carrito-producto{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.carrito-producto-titulo, .carrito-producto-precio, .carrito-producto-cantidad{
+    padding-right: 35px;
+}
+
+.carrito-producto button{
+        border: none;
+        padding: 7px;
+        text-align: center;
+        background-color: #faedcd;
+        cursor: pointer;
+        width: 100%;
+        font-size: 12px;
+        margin: 5px;
+        border-radius: 5px;
+}
+
+.carrito-producto button:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+
+.carrito-comprar-boton{
+    border: none;
+    padding: 7px;
+    color: white;
+    background-color: #D4A373;
+    text-align: center;
+    cursor: pointer;
+    width: 100px;
+    font-size: 15px;
+    margin: 5px;
+    margin-top: 40px;
+    margin-left: 70%;
+    border-radius: 5px;
+}
+
+.carrito-comprar-boton:hover{
+    opacity: 0.7;
 }

@@ -1,83 +1,107 @@
-alert('Registrate para empezar tu compra')
-let nombre = prompt('Ingresa tu nombre')
-let apellido = prompt('Ingresa tu apellido')
-
-if( /\d/.test(nombre) || /\d/.test(apellido) ) {
-    alert('Por favor ingrese nombre y apellido válidos');
-    nombre = prompt('Ingresa tu nombre')
-    apellido = prompt('Ingresa tu apellido')
-}
-
 const productos = [{
         nombre: "Piluso Flores",
-        precio: 1500
+        precio: 1500,
+        id: "piluso-flores",
+        imagen: "./img/img-producto1.jpg"
+        
     },
     {
         nombre: "Almohadon Lila",
-        precio: 2000
+        precio: 2000,
+        id: "almohadon-lila",
+        imagen: "./img/img-producto2.jpg"
     },
     {
-        nombre: "Remera",
-        precio: 5000
+        nombre: "Remera 01",
+        precio: 5000,
+        id: "remera-01",
+        imagen: "./img/img-producto3.jpeg"
     },
     {
         nombre: "Almohadon Rosa",
-        precio: 3000
+        precio: 3000,
+        id: "almohadon-rosa",
+        imagen: "./img/img-producto4.jpg"
     },
     {
         nombre: "Sweater Ondas",
-        precio: 3500
+        precio: 3500,
+        id: "sweater-ondas",
+        imagen:"../img/img-producto5.jpg"
     },
     {
         nombre: "Sweater Cuadros",
-        precio: 3500
+        precio: 3500,
+        id: "sweater-cuadros",
+        imagen: "../img/img-producto6.jpg"
+    },
+    {
+        nombre: "Remera  02",
+        precio: 5000,
+        id: "remera-02",
+        imagen: "../img/img-producto7.jpeg"
+    },
+    {
+        nombre: "Remera 03",
+        precio: 5000,
+        id: "remera-03",
+        imagen: "../img/img-producto8.jpeg"
     }
 ]
 
-function productosDisponibles(){
-let stockProductos = productos.map(
-    (productos) => productos.nombre
-);
-return stockProductos.join(", ");
+const contenedorProductos = document.querySelector("#contenedor-productos")
+let botonesAgregar = document.querySelectorAll(".boton-agregar");
+let numeroProductos = document.querySelector("#cantidad");
+
+function cargarProductos(){
+    productos.forEach(producto =>{
+
+        const div = document.createElement ("div");
+        div.classList.add("producto");
+        div.innerHTML = `
+                <img src="${producto.imagen}"
+                <div class="producto-informacion" >
+                    <h3 class="producto-titulo">${producto.nombre}</h3>
+                    <p class="producto-precio">${"$"+producto.precio}</p>
+                    <button class="boton-agregar" id="${producto.id}">Agregar al carrito</button>
+                </div>   
+        `;
+
+        contenedorProductos.append(div);
+    })
+
+    botonesProductos();
+}
+
+cargarProductos();
+
+function botonesProductos(){
+    botonesAgregar = document.querySelectorAll(".boton-agregar");
+
+    botonesAgregar.forEach(boton =>{
+        boton.addEventListener("click", agregarAlCarrito);
+    });
 }
 
 
-alert('Gracias por registrarse! Estos son nuestros productos disponibles: ' + productosDisponibles())
+let productosEnCarrito = [];
 
-let compra = prompt('Elija uno de los productos disponibles ' + productosDisponibles() + '. Si no quiere seguir con la compra, ingrese "fin"' )
-
-while(compra == "fin"){
-alert('Gracias, ' + nombre + '! Que vuelvas pronto');
+function agregarAlCarrito(e){
+    const idBoton = e.currentTarget.id;
+    const productoAgregado = productos.find(producto => producto.id === idBoton)
+    if(productosEnCarrito.some(producto=> producto.id === idBoton)){
+        const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
+        productosEnCarrito[index].cantidad++;
+    } else{
+        productoAgregado.cantidad = 1;
+        productosEnCarrito.push(productoAgregado);
+}
+cantidadCarrito();
+localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 }
 
-let total = 0;
-
-
-if (compra == "Piluso Flores" || compra == "Almohadon Lila" || compra == "Remera" || compra == "Almohadon Rosa" || compra == "Sweater Ondas" || compra == "Sweater Cuadros" || compra == "fin"){
-    switch(compra){
-        case "Piluso Flores":
-            total += productos[0].precio
-            break;
-        case "Almohadon Lila":
-            total += productos[1].precio
-            break;
-        case "Remera":
-            total += productos[2].precio
-            break;
-        case "Almohadon Rosa":
-            total += productos[3].precio
-            break;
-        case "Sweater Ondas":
-            total += productos[4].precio
-            break;
-        case "Sweater Cuadros":
-            total += productos[5].precio
-            break;
-        
-    }
-    alert(nombre + ', el precio total de tu compra es ' + total + ". Muchas gracias!")
+function cantidadCarrito(){
+    let numeroProductos = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad,0);
+    cantidad.innerHTML = numeroProductos;
 }
-else {
-    alert('Por favor ingrese uno de los productos disponibles');
-    compra = prompt('Los productos disponibles son ' + productosDisponibles())
-    }
+
