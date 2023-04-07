@@ -283,7 +283,7 @@ ul.navbar-nav a.active{
     padding-right: 35px;
 }
 
-.carrito-producto button{
+.carrito-producto button, .boton-vaciar{
         border: none;
         padding: 7px;
         text-align: center;
@@ -301,7 +301,7 @@ ul.navbar-nav a.active{
 }
 
 
-.carrito-comprar-boton{
+.boton-comprar{
     border: none;
     padding: 7px;
     color: white;
@@ -316,6 +316,7 @@ ul.navbar-nav a.active{
     border-radius: 5px;
 }
 
-.carrito-comprar-boton:hover{
+
+.boton-comprar:hover,.boton-vaciar:hover{
     opacity: 0.7;
 }

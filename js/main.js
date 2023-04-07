@@ -83,8 +83,18 @@ function botonesProductos(){
     });
 }
 
+let productosEnCarrito;
+const productosEnCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));
 
-let productosEnCarrito = [];
+if(productosEnCarritoLS){
+    productosEnCarrito = productosEnCarritoLS;
+    cantidadCarrito();
+}
+else{
+    productosEnCarrito = [];
+}
+
+
 
 function agregarAlCarrito(e){
     const idBoton = e.currentTarget.id;
@@ -98,6 +108,7 @@ function agregarAlCarrito(e){
 }
 cantidadCarrito();
 localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+
 }
 
 function cantidadCarrito(){
